@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- HEADER -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="#0A9D8F"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AI Chẩn Đoán Da"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phân tích mức độ bệnh da bằng AI"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <!-- IMAGE -->
+        <ImageView
+            android:id="@+id/imgView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="20dp"
+            android:background="#EEEEEE"
+            android:scaleType="centerCrop"/>
+
+        <!-- HÀNG 2 BUTTON -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <!-- BUTTON CAMERA -->
+            <Button
+                android:id="@+id/btnCamera"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Chụp ảnh"/>
+
+            <!-- KHOẢNG CÁCH -->
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="1dp"/>
+
+            <!-- BUTTON THƯ VIỆN -->
+            <Button
+                android:id="@+id/btnGallery"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Thư viện"/>
+
+        </LinearLayout>
+
+        <!-- BUTTON PHÂN TÍCH -->
+        <Button
+            android:id="@+id/btnAnalyze"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phân tích"
+            android:layout_marginTop="14dp"/>
+        <!-- notes -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_note"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="14dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:contentDescription="Warning Icon"
+                android:src="@android:drawable/ic_dialog_info"
+                app:tint="#D4A373" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Lưu ý: Kết quả phân tích chỉ mang tính chất tham khảo dựa trên mô hình AI. Vui lòng thăm khám bác sĩ da liễu để có chẩn đoán chính xác và phác đồ điều trị phù hợp."
+                android:textColor="#4A4A4A"
+                android:textSize="14sp"
+                android:lineSpacingMultiplier="1.2" />
+
+        </LinearLayout>
+        <!-- RESULT -->
+        <TextView
+            android:id="@+id/txtResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kết quả AI"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="20dp"
+            android:layout_marginTop="20dp"/>
+        <TextView
+            android:id="@+id/txtBenign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lành tính: 0%"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#2E7D32"
+            android:layout_marginTop="12dp"/>
+
+        <TextView
+            android:id="@+id/txtMalignant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ác tính: 0%"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#C62828"
+            android:layout_marginTop="6dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,67 +1,55 @@
 package com.quynh.ai_skin_diagnosis;
 
-import static androidx.core.app.ActivityCompat.startActivityForResult;
-
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-import java.io.IOException;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    ImageView imgView;
-    Button btnCamera;
-    TextView txtResult;
-    Bitmap bitmap;
-    Classifier classifier;
+
+    BottomNavigationView bottomNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        imgView = findViewById(R.id.imgView);
-        btnCamera = findViewById(R.id.btnCamera);
-        txtResult = findViewById(R.id.txtResult);
+        bottomNav = findViewById(R.id.bottomNav);
 
-        // Khởi tạo classifier
-        try {
-            classifier = new Classifier(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-            txtResult.setText("Lỗi tải model!");
-        }
+        // Fragment mặc định
+        replaceFragment(new HomeFragment());
 
-        btnCamera.setOnClickListener(v -> {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent, 100);
+        bottomNav.setOnItemSelectedListener(item -> {
+
+            Fragment fragment = null;
+
+            if (item.getItemId() == R.id.nav_home) {
+                fragment = new HomeFragment();
+            }
+            else if (item.getItemId() == R.id.nav_history) {
+                fragment = new HistoryFragment();
+            }
+//            else if (item.getItemId() == R.id.nav_insights) {
+//                fragment = new InsightsFragment();
+//            }
+//            else if (item.getItemId() == R.id.nav_ai) {
+//                fragment = new AssistantFragment();
+//            }
+
+            if (fragment != null) {
+                replaceFragment(fragment);
+            }
+
+            return true;
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
-            bitmap = (Bitmap) data.getExtras().get("data");
-            imgView.setImageBitmap(bitmap);
-            predictImage(bitmap);
-        }
-    }
-
-    private void predictImage(Bitmap bitmap) {
-        if (classifier != null && bitmap != null) {
-            txtResult.setText("Đang xử lý ảnh...");
-            String result = classifier.predict(bitmap);
-            txtResult.setText("Kết quả: " + result);
-        } else {
-            txtResult.setText("Chưa sẵn sàng!");
-        }
+    private void replaceFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit();
     }
 }
