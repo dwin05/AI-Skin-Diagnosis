@@ -44,6 +44,9 @@ dependencies {
     implementation("org.tensorflow:tensorflow-lite:2.16.1")
     //implementation 'org.tensorflow:tensorflow-lite-support:0.4.4'
     implementation 'com.google.android.material:material:1.12.0'
+    // GSON để giúp chuyển đổi list cho SharedPreferences có thể đọc được
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
     implementation libs.navigation.fragment
     implementation libs.navigation.ui
     testImplementation libs.junit

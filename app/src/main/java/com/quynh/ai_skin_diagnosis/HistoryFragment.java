@@ -13,45 +13,25 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 public class HistoryFragment extends Fragment {
-
     RecyclerView recyclerView;
-
     ArrayList<HistoryItem> list;
-
     HistoryAdapter adapter;
-
-    public HistoryFragment() {
-    }
-
+    public HistoryFragment() {}
     @Override
-    public View onCreateView(LayoutInflater inflater,
-                             ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View view = inflater.inflate(
-                R.layout.activity_history_fragment,
-                container,
-                false);
-
+        View view = inflater.inflate(R.layout.activity_history_fragment,
+                                      container, false);
         recyclerView = view.findViewById(R.id.recyclerHistory);
-
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(getContext())
         );
-
-        list = new ArrayList<>();
-
-        // Demo data
-        list.add(new HistoryItem(
-                "/storage/emulated/0/test.jpg",
-                "Acne",
-                "17/05/2026"
-        ));
+        list = HistoryManager.loadHistory(
+                requireContext()
+        );
 
         adapter = new HistoryAdapter(list);
-
         recyclerView.setAdapter(adapter);
-
         return view;
     }
 }

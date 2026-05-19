@@ -14,8 +14,8 @@
         <!-- HEADER -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:background="#0A9D8F"
+            android:layout_height="120dp"
+            android:background="@drawable/bg_header"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="AI Chẩn Đoán Da"
-                android:textColor="#FFFFFF"
+                android:textColor="#1A2B8A"
                 android:textSize="28sp"
                 android:textStyle="bold"/>
 
@@ -31,49 +31,58 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Phân tích mức độ bệnh da bằng AI"
-                android:textColor="#FFFFFF"
+                android:textColor="#1A2B8A"
                 android:textSize="16sp"/>
         </LinearLayout>
 
-        <!-- IMAGE -->
-        <ImageView
-            android:id="@+id/imgView"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_marginTop="20dp"
-            android:background="#EEEEEE"
-            android:scaleType="centerCrop"/>
+            android:layout_marginTop="20dp">
+            <!-- Ảnh -->
+            <ImageView
+                android:id="@+id/imgView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#EEEEEE"
+                android:scaleType="centerCrop"/>
+            <!-- Icon camera -->
+            <ImageView
+                android:id="@+id/imgCameraIcon"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                android:alpha="0.7"
+                android:src="@android:drawable/ic_menu_camera"/>
 
-        <!-- HÀNG 2 BUTTON -->
+        </FrameLayout>
+        <!-- 2 BUTTON -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:orientation="horizontal">
-
-            <!-- BUTTON CAMERA -->
             <Button
                 android:id="@+id/btnCamera"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:drawableStart="@android:drawable/ic_menu_camera"
+                android:drawablePadding="8dp"
                 android:text="Chụp ảnh"/>
-
-            <!-- KHOẢNG CÁCH -->
             <Space
                 android:layout_width="12dp"
                 android:layout_height="1dp"/>
-
-            <!-- BUTTON THƯ VIỆN -->
             <Button
                 android:id="@+id/btnGallery"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:drawableStart="@android:drawable/ic_menu_gallery"
+                android:drawablePadding="8dp"
                 android:text="Thư viện"/>
 
         </LinearLayout>
-
         <!-- BUTTON PHÂN TÍCH -->
         <Button
             android:id="@+id/btnAnalyze"
@@ -85,11 +94,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="10dp"
             android:background="@drawable/bg_note"
             android:orientation="horizontal"
             android:padding="16dp">
-
             <ImageView
                 android:layout_width="19dp"
                 android:layout_height="14dp"
@@ -98,7 +106,6 @@
                 android:contentDescription="Warning Icon"
                 android:src="@android:drawable/ic_dialog_info"
                 app:tint="#D4A373" />
-
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -115,10 +122,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kết quả AI"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold"
-            android:padding="20dp"
-            android:layout_marginTop="20dp"/>
+            android:padding="10dp"
+            android:layout_marginTop="10dp"/>
         <TextView
             android:id="@+id/txtBenign"
             android:layout_width="wrap_content"
@@ -126,6 +133,7 @@
             android:text="Lành tính: 0%"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:paddingLeft="20dp"
             android:textColor="#2E7D32"
             android:layout_marginTop="12dp"/>
 
@@ -135,6 +143,7 @@
             android:layout_height="wrap_content"
             android:text="Ác tính: 0%"
             android:textSize="18sp"
+            android:paddingLeft="20dp"
             android:textStyle="bold"
             android:textColor="#C62828"
             android:layout_marginTop="6dp"/>
