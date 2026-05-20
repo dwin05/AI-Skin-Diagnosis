@@ -111,8 +111,6 @@ public class HomeFragment extends Fragment {
                             }
                         }
                     });
-    // lưu lại bằng sharePreferences
-    SharedPreferences preferences = requireContext().getSharedPreferences("HistoryData", Context.MODE_PRIVATE);
 
     // AI PREDICT
     private void predictImage(Bitmap bitmap) {

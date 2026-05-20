@@ -40,16 +40,18 @@ public class Classifier {
         for (int i = 0; i < IMAGE_SIZE; i++) {
             for (int j = 0; j < IMAGE_SIZE; j++) {
                 int val = intValues[pixel++];
-                float r = ((val >> 16) & 0xFF) / 255.0f;
-                float g = ((val >> 8) & 0xFF) / 255.0f;
-                float b = (val & 0xFF) / 255.0f;
+                float r = (float) ((val >> 16) & 0xFF);
+                float g = (float) ((val >> 8) & 0xFF);
+                float b = (float) (val & 0xFF);
                 byteBuffer.putFloat(r);
                 byteBuffer.putFloat(g);
                 byteBuffer.putFloat(b);
             }
         }
+        // 2. Chạy mô hình để lấy kết quả xác suất trực tiếp từ lớp Sigmoid của TFLite
         float[][] output = new float[1][1];
         interpreter.run(byteBuffer, output);
+        // Giá trị output[0][0] này đã chạy qua Sigmoid từ file .tflite nên mặc định nằm trong khoảng [0.0, 1.0]
         float malignant = output[0][0];
         float benign = 1f - malignant;
         String label;
