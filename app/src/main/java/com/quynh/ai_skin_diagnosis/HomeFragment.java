@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
-
     ImageView imgView;
     Button btnCamera, btnGallery, btnAnalyze;
     TextView txtResult, txtBenign, txtMalignant;
@@ -31,18 +30,16 @@ public class HomeFragment extends Fragment {
     Classifier classifier;
 
     public HomeFragment() {}
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.activity_home_fragment, container, false);
     }
-
     @Override
-    public void onViewCreated(@NonNull View view,
-                              @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        // Ánh xạ các View từ giao diện XML
         imgView = view.findViewById(R.id.imgView);
         btnCamera = view.findViewById(R.id.btnCamera);
         btnGallery = view.findViewById(R.id.btnGallery);
@@ -50,23 +47,31 @@ public class HomeFragment extends Fragment {
         txtResult = view.findViewById(R.id.txtResult);
         txtBenign = view.findViewById(R.id.txtBenign);
         txtMalignant = view.findViewById(R.id.txtMalignant);
-        //tải model AI lên
+        // Tải model AI lên
         try {
             classifier = new Classifier(requireContext());
         } catch (IOException e) {
             e.printStackTrace();
             txtResult.setText("Lỗi tải AI model!");
         }
-        // CAMERA
+        // kt quyền
         btnCamera.setOnClickListener(v -> {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            cameraLauncher.launch(intent);
+            if (androidx.core.content.ContextCompat.checkSelfPermission(
+                    requireContext(), android.Manifest.permission.CAMERA) == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                // Nếu đã được cấp quyền từ trước -> Mở luôn camera
+                mobaCamera();
+            } else {
+                // Nếu chưa được cấp quyền -> Phóng bảng xin quyền hệ điều hành lên
+                requestPermissionLauncher.launch(android.Manifest.permission.CAMERA);
+            }
         });
+
         // GALLERY
-        btnGallery.setOnClickListener(v -> {Intent intent = new Intent(
-                    Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        btnGallery.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             galleryLauncher.launch(intent);
         });
+
         // ANALYZE
         btnAnalyze.setOnClickListener(v -> {
             if (bitmap != null) {
@@ -76,15 +81,38 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+    // Bộ đăng ký xin quyền truy cập Camera từ phía người dùng
+    private final ActivityResultLauncher<String> requestPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    // Người dùng bấm "Cho phép" -> Gọi hàm mở camera
+                    mobaCamera();
+                } else {
+                    // Người dùng bấm "Từ chối"
+                    txtResult.setText("Bạn cần cấp quyền Camera để chụp ảnh!");
+                }
+            });
 
-    // CAMERA RESULT
-    ActivityResultLauncher<Intent> cameraLauncher =
+    // Hàm gọi Intent mở ứng dụng Camera an toàn
+    private void mobaCamera() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (intent.resolveActivity(requireActivity().getPackageManager()) != null) {
+            cameraLauncher.launch(intent);
+        } else {
+            try {
+                cameraLauncher.launch(intent);
+            } catch (Exception e) {
+                txtResult.setText("Không tìm thấy ứng dụng Camera trên hệ thống!");
+            }
+        }
+    }
+
+    // XỬ LÝ KẾT QUẢ KHI CHỤP ẢNH TỪ CAMERA XONG
+    private final ActivityResultLauncher<Intent> cameraLauncher =
             registerForActivityResult(
                     new ActivityResultContracts.StartActivityForResult(),
                     result -> {
-                        if (result.getResultCode() ==
-                                getActivity().RESULT_OK
-                                && result.getData() != null) {
+                        if (result.getResultCode() == android.app.Activity.RESULT_OK && result.getData() != null) {
                             Bundle extras = result.getData().getExtras();
                             if (extras != null) {
                                 bitmap = (Bitmap) extras.get("data");
@@ -92,14 +120,13 @@ public class HomeFragment extends Fragment {
                             }
                         }
                     });
-    // GALLERY RESULT
-    ActivityResultLauncher<Intent> galleryLauncher =
+
+    // XỬ LÝ KẾT QUẢ KHI CHỌN ẢNH TỪ THƯ VIỆN (GALLERY) XONG
+    private final ActivityResultLauncher<Intent> galleryLauncher =
             registerForActivityResult(
                     new ActivityResultContracts.StartActivityForResult(),
                     result -> {
-                        if (result.getResultCode() ==
-                                getActivity().RESULT_OK
-                                && result.getData() != null) {
+                        if (result.getResultCode() == android.app.Activity.RESULT_OK && result.getData() != null) {
                             try {
                                 bitmap = MediaStore.Images.Media.getBitmap(
                                         requireActivity().getContentResolver(),
@@ -118,24 +145,27 @@ public class HomeFragment extends Fragment {
         txtResult.setText("Kết quả: " + result.getLabel());
         txtBenign.setText("Lành tính: " + (int) result.getBenignPercent() + "%");
         txtMalignant.setText("Ác tính: " + (int) result.getMalignantPercent() + "%");
-        // load history cũ
+        // Tải lịch sử cũ
         ArrayList<HistoryItem> historyList = HistoryManager.loadHistory(requireContext());
-        // lưu ảnh
+        // Lưu ảnh tạm thời
         String imagePath = saveImage(bitmap);
-        // thời gian
-        String currentDate = java.text.DateFormat.getDateTimeInstance()
-                             .format(new java.util.Date());
-        // thêm vào list history
+        // Lấy thời gian hiện tại
+        String currentDate = java.text.DateFormat.getDateTimeInstance().format(new java.util.Date());
+
+        // Tính toán phần trăm lưu theo nhãn phù hợp
         float percent;
         if (result.getLabel().equals("Lành tính")) {
             percent = result.getBenignPercent();
         } else {
             percent = result.getMalignantPercent();
         }
-        historyList.add(0, new HistoryItem(imagePath, result.getLabel(),
-                                                percent, currentDate));
+
+        // Đẩy bản ghi mới lên đầu danh sách và lưu lại
+        historyList.add(0, new HistoryItem(imagePath, result.getLabel(), percent, currentDate));
         HistoryManager.saveHistory(requireContext(), historyList);
     }
+
+    // Hàm mã hóa và nén lưu file ảnh tạm vào bộ nhớ Cache
     private String saveImage(Bitmap bitmap) {
         try {
             java.io.File file = new java.io.File(requireContext().getCacheDir(),

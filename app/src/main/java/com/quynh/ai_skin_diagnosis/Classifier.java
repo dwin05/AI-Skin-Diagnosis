@@ -43,9 +43,9 @@ public class Classifier {
                 float r = (float) ((val >> 16) & 0xFF);
                 float g = (float) ((val >> 8) & 0xFF);
                 float b = (float) (val & 0xFF);
-                byteBuffer.putFloat(r);
-                byteBuffer.putFloat(g);
                 byteBuffer.putFloat(b);
+                byteBuffer.putFloat(g);
+                byteBuffer.putFloat(r);
             }
         }
         // 2. Chạy mô hình để lấy kết quả xác suất trực tiếp từ lớp Sigmoid của TFLite
