@@ -23,9 +23,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
-    ImageView imgView;
+    ImageView imgView, imgCameraIcon;
     Button btnCamera, btnGallery, btnAnalyze;
-    TextView txtResult, txtBenign, txtMalignant;
+    TextView txtResult, txtBenign, txtMalignant, tvAnh;
     Bitmap bitmap;
     Classifier classifier;
 
@@ -41,12 +41,14 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         // Ánh xạ các View từ giao diện XML
         imgView = view.findViewById(R.id.imgView);
+        imgCameraIcon = view.findViewById(R.id.imgCameraIcon);
         btnCamera = view.findViewById(R.id.btnCamera);
         btnGallery = view.findViewById(R.id.btnGallery);
         btnAnalyze = view.findViewById(R.id.btnAnalyze);
         txtResult = view.findViewById(R.id.txtResult);
         txtBenign = view.findViewById(R.id.txtBenign);
         txtMalignant = view.findViewById(R.id.txtMalignant);
+        tvAnh = view.findViewById(R.id.tvAnh);
         // Tải model AI lên
         try {
             classifier = new Classifier(requireContext());
@@ -116,7 +118,10 @@ public class HomeFragment extends Fragment {
                             Bundle extras = result.getData().getExtras();
                             if (extras != null) {
                                 bitmap = (Bitmap) extras.get("data");
+                                //bitmap = cropToSquare(rawBitmap);
                                 imgView.setImageBitmap(bitmap);
+                                tvAnh.setVisibility(View.GONE);
+                                imgCameraIcon.setVisibility(View.GONE);
                             }
                         }
                     });
@@ -133,11 +138,30 @@ public class HomeFragment extends Fragment {
                                         result.getData().getData()
                                 );
                                 imgView.setImageBitmap(bitmap);
+                                tvAnh.setVisibility(View.GONE);
+                                imgCameraIcon.setVisibility(View.GONE);
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }
                     });
+    // cắt ảnh vuông
+    private Bitmap cropToSquare(Bitmap bitmap) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+
+        // Tìm kích thước của cạnh ngắn hơn
+        int newWidth = Math.min(width, height);
+        int newHeight = newWidth;
+
+        // Tính toán tọa độ điểm bắt đầu để cắt từ chính giữa bức ảnh
+        int cropX = (width - newWidth) / 2;
+        int cropY = (height - newHeight) / 2;
+
+        // Cắt ảnh theo tỉ lệ vuông 1:1 chuẩn
+        Bitmap squareBitmap = Bitmap.createBitmap(bitmap, cropX, cropY, newWidth, newHeight);
+        return squareBitmap;
+    }
 
     // AI PREDICT
     private void predictImage(Bitmap bitmap) {

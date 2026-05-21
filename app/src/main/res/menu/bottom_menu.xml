@@ -12,12 +12,12 @@
         android:title="Lịch sử"/>
 
     <item
-        android:id="@+id/nav_insights"
+        android:id="@+id/nav_view"
         android:icon="@drawable/ic_view"
         android:title="Bệnh da"/>
 
     <item
-        android:id="@+id/nav_ai"
+        android:id="@+id/nav_tips"
         android:icon="@drawable/ic_tips"
         android:title="Lời khuyên"/>
 

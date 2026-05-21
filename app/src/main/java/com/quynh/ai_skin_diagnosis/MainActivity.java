@@ -25,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
 //            else if (item.getItemId() == R.id.nav_view) {
 //                fragment = new ViewFragment();
 //            }
-//            else if (item.getItemId() == R.id.nav_tips) {
-//                fragment = new TipsFragment();
-//            }
+            else if (item.getItemId() == R.id.nav_tips) {
+                fragment = new TipsFragment();
+            }
             if (fragment != null) {
                 replaceFragment(fragment);
             }

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        >
 
         <!-- HEADER -->
         <LinearLayout
@@ -17,6 +17,7 @@
             android:layout_height="120dp"
             android:background="@drawable/bg_header"
             android:gravity="center"
+            android:padding="16dp"
             android:orientation="vertical">
 
             <TextView
@@ -35,40 +36,103 @@
                 android:textSize="16sp"/>
         </LinearLayout>
 
-        <FrameLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xin chào, chúc một ngày tốt lành!"
+            android:textColor="#0A3D91"
+            android:textSize="20sp"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textStyle="bold"/>
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginTop="20dp">
-            <!-- Ảnh -->
-            <ImageView
-                android:id="@+id/imgView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#EEEEEE"
-                android:scaleType="centerCrop"/>
-            <!-- Icon camera -->
-            <ImageView
-                android:id="@+id/imgCameraIcon"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_gravity="center"
-                android:alpha="0.7"
-                android:src="@android:drawable/ic_menu_camera"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="Hãy để hệ thống AI hỗ trợ phân tích và kiểm tra tình trạng làn da của bạn ngay hôm nay."
+            android:textColor="#9E9E9E"
+            android:textSize="16dp"/>
 
-        </FrameLayout>
+        <androidx.cardview.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:cardPreventCornerOverlap="false">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- Ảnh hiển thị (Sử dụng src thay vì background để centerCrop hoạt động chuẩn) -->
+                <ImageView
+                    android:id="@+id/imgView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_image" />
+
+                <!-- Lớp phủ mờ nhẹ phía trên ảnh (Giúp text màu trắng dễ đọc hơn) -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#26000000" />
+
+                <!-- Khung chứa Icon và Chữ (Sẽ ẩn đi bằng code Java khi đã chọn được ảnh) -->
+                <LinearLayout
+                    android:id="@+id/layoutPlaceholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/imgCameraIcon"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:alpha="0.6"
+                        android:src="@android:drawable/ic_menu_camera"
+                        app:tint="#FFFFFF" />
+
+                    <TextView
+                        android:id="@+id/tvAnh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Chưa có ảnh nào được chọn!"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:gravity="center" />
+                </LinearLayout>
+
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
+
         <!-- 2 BUTTON -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="16dp">
             <Button
                 android:id="@+id/btnCamera"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableStart="@android:drawable/ic_menu_camera"
+                android:gravity="center"
+                android:drawableLeft="@android:drawable/ic_menu_camera"
                 android:drawablePadding="8dp"
+                android:tint="@null"
                 android:text="Chụp ảnh"/>
             <Space
                 android:layout_width="12dp"
@@ -78,18 +142,28 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableStart="@android:drawable/ic_menu_gallery"
+                android:gravity="center"
+                android:drawableLeft="@android:drawable/ic_menu_gallery"
                 android:drawablePadding="8dp"
+                android:tint="@null"
                 android:text="Thư viện"/>
 
         </LinearLayout>
         <!-- BUTTON PHÂN TÍCH -->
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAnalyze"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_btn_phantich"
             android:text="Phân tích"
-            android:layout_marginTop="14dp"/>
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:drawableLeft="@android:drawable/ic_menu_search"
+            android:drawablePadding="10dp"
+            android:paddingLeft="65dp"
+            android:gravity="center_vertical"/>
         <!-- notes -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -124,7 +198,7 @@
             android:text="Kết quả AI"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:padding="10dp"
+            android:padding="16dp"
             android:layout_marginTop="10dp"/>
         <TextView
             android:id="@+id/txtBenign"
@@ -144,6 +218,7 @@
             android:text="Ác tính: 0%"
             android:textSize="18sp"
             android:paddingLeft="20dp"
+            android:paddingBottom="30dp"
             android:textStyle="bold"
             android:textColor="#C62828"
             android:layout_marginTop="6dp"/>
