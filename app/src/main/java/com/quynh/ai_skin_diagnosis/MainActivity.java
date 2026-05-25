@@ -22,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
             } else if (item.getItemId() == R.id.nav_history) {
                 fragment = new HistoryFragment();
             }
-//            else if (item.getItemId() == R.id.nav_view) {
-//                fragment = new ViewFragment();
-//            }
+            else if (item.getItemId() == R.id.nav_article) {
+                fragment = new ArticleFragment();
+            }
             else if (item.getItemId() == R.id.nav_tips) {
                 fragment = new TipsFragment();
             }

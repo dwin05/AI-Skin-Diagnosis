@@ -57,8 +57,6 @@
             android:textSize="16dp"/>
 
         <androidx.cardview.widget.CardView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_gravity="center"
@@ -79,12 +77,13 @@
                     android:src="@drawable/bg_image" />
 
                 <!-- Lớp phủ mờ nhẹ phía trên ảnh (Giúp text màu trắng dễ đọc hơn) -->
+
+                <!-- Khung chứa Icon và Chữ (Sẽ ẩn đi bằng code Java khi đã chọn được ảnh) -->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#26000000" />
 
-                <!-- Khung chứa Icon và Chữ (Sẽ ẩn đi bằng code Java khi đã chọn được ảnh) -->
                 <LinearLayout
                     android:id="@+id/layoutPlaceholder"
                     android:layout_width="wrap_content"
@@ -222,7 +221,6 @@
             android:textStyle="bold"
             android:textColor="#C62828"
             android:layout_marginTop="6dp"/>
-
     </LinearLayout>
 
 </ScrollView>

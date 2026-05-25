@@ -18,18 +18,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AISkinDiagnosis">
         <activity
-            android:name=".TipsDetailActivity"
+            android:name=".WebViewActivity"
             android:exported="false" />
         <activity
-            android:name=".TipsFragment"
+            android:name=".TipsDetailActivity"
             android:exported="false" />
-         <activity
-             android:name=".HistoryFragment"
-             android:exported="false"
-             android:theme="@style/Theme.AISkinDiagnosis" />
-         <activity
-             android:name=".HomeFragment"
-             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

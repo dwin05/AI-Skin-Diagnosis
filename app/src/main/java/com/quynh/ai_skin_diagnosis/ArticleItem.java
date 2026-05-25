@@ -1,21 +1,24 @@
 package com.quynh.ai_skin_diagnosis;
-public class TipItem {
+
+public class ArticleItem {
     private int imageRes;
     private String title;
-    private String content;
+    private String url;
 
-    public TipItem(int imageRes, String title, String content) {
+    public ArticleItem(int imageRes, String title, String url) {
         this.imageRes = imageRes;
         this.title = title;
-        this.content = content;
+        this.url = url;
     }
     public int getImageRes() {
         return imageRes;
     }
+
     public String getTitle() {
         return title;
     }
-    public String getContent() {
-        return content;
+
+    public String getUrl() {
+        return url;
     }
 }

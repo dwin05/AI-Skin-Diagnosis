@@ -47,6 +47,8 @@ dependencies {
     // GSON để giúp chuyển đổi list cho SharedPreferences có thể đọc được
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    // webview
+    implementation "androidx.webkit:webkit:1.14.0"
     implementation libs.navigation.fragment
     implementation libs.navigation.ui
     testImplementation libs.junit
