@@ -1,5 +1,6 @@
 # ỨNG DỤNG NHẬN DIỆN BỆNH DA LÀNH TÍNH - ÁC TÍNH BẰNG AI
-## dựa vào hình ảnh mà người dùng cung cấp, ứng dụng sẽ cho bạn biết được bệnh da ấy có mức độ lành tính, ác tính bao nhiêu. Từ đó người dùng có thể chủ động thăm khám bác sĩ trước khi quá muộn đồng thời nâng cao ý thức bảo vệ làn da của bản thân.
+## Ứng dụng sử dụng mô hình mạng neural tích chập EfficientNetV2B0 tối ưu cho các ứng dụng trên di động đã được huấn luyện sẵn. Khi sử dụng để chuẩn đoán bệnh về da, mô hình được huấn luyện thêm trên tập dữ liệu SkinDataSet được lấy trên Kaggle tại địa chỉ (https://www.kaggle.com/datasets/fanconic/skin-cancer-malignant-vs-benign)
+## Dựa vào hình ảnh mà người dùng cung cấp, ứng dụng sẽ cho bạn biết được bệnh da ấy có mức độ lành tính, ác tính bao nhiêu. Từ đó người dùng có thể chủ động thăm khám bác sĩ trước khi quá muộn đồng thời nâng cao ý thức bảo vệ làn da của bản thân.
 ## 1. Màn hình chính 
 ### là nơi để người dùng chụp ảnh hoặc sử dụng ảnh từ thư viện để tiến hành kiểm tra phân tích. 
 *Lưu ý: Ảnh khi chụp phải rỏ nét, sát vào phần da cần kiểm tra, không bị lẫn phông nền dẫn đến kết quả thiếu tính chính xác.*
