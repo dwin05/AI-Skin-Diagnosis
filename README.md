@@ -16,7 +16,11 @@
 ### Màn hình này hiển thị các bệnh lành tính - ác tính để người dùng có thể đọc và tìm hiểu về các bệnh. Sử dụng recycler view và hiện thị ra nhiều section theo chủ đề khác nhau.
 <img width="1280" height="800" alt="image" src="https://github.com/user-attachments/assets/385e886b-1ee7-45f6-b389-4cbb3f6bbe8a" />
 
+### Khi người dùng click vào từng item. Hệ thống sử dụng Webview để chuyển sang trang web đã được tích hợp vào trong item đó mà hiển thị thông tin chính thống cho người dùng đọc.
+
 ## 4. Màn hình tips
 ### Màn hình Tips sử dụng recycler view để hiển thị các cách giúp cải thiện các bệnh da ác tính, cách bảo vệ và chăm sóc da trước những nguy cơ tiềm tàng.
 <img width="1280" height="800" alt="image" src="https://github.com/user-attachments/assets/24df23d4-b459-496f-a3aa-dc576b397be2" />
+
+### Màn hình chi tiết khi click vào từng item
 
