@@ -3,6 +3,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/md_theme_background"
+    android:fitsSystemWindows="true"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -10,12 +12,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
-
         <!-- HEADER -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:background="@drawable/bg_header"
+            android:background="@color/md_theme_primaryContainer"
             android:gravity="center"
             android:padding="16dp"
             android:orientation="vertical">
@@ -24,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="AI Chẩn Đoán Da"
-                android:textColor="#1A2B8A"
+                android:textColor="@color/md_theme_primary"
                 android:textSize="28sp"
                 android:textStyle="bold"/>
 
@@ -32,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Phân tích mức độ bệnh da bằng AI"
-                android:textColor="#1A2B8A"
+                android:textColor="@color/text_secondary"
                 android:textSize="16sp"/>
         </LinearLayout>
 
@@ -61,13 +62,13 @@
             android:layout_height="300dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/md_theme_surface"
             app:cardPreventCornerOverlap="false">
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
                 <!-- Ảnh hiển thị (Sử dụng src thay vì background để centerCrop hoạt động chuẩn) -->
                 <ImageView
                     android:id="@+id/imgView"
@@ -75,9 +76,6 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/bg_image" />
-
-                <!-- Lớp phủ mờ nhẹ phía trên ảnh (Giúp text màu trắng dễ đọc hơn) -->
-
                 <!-- Khung chứa Icon và Chữ (Sẽ ẩn đi bằng code Java khi đã chọn được ảnh) -->
                 <View
                     android:layout_width="match_parent"
@@ -123,29 +121,31 @@
             android:layout_marginTop="16dp"
             android:orientation="horizontal"
             android:padding="16dp">
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCamera"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:drawableLeft="@android:drawable/ic_menu_camera"
-                android:drawablePadding="8dp"
-                android:tint="@null"
-                android:text="Chụp ảnh"/>
+                android:text="Chụp ảnh"
+                android:textColor="@color/md_theme_primary"
+                app:backgroundTint="#BACEF4"
+                app:cornerRadius="16dp"
+                app:icon="@android:drawable/ic_menu_camera"
+                app:iconPadding="4dp"/>
             <Space
                 android:layout_width="12dp"
                 android:layout_height="1dp"/>
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnGallery"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:drawableLeft="@android:drawable/ic_menu_gallery"
-                android:drawablePadding="8dp"
-                android:tint="@null"
-                android:text="Thư viện"/>
+                android:text="Thư viện"
+                android:textColor="@color/md_theme_primary"
+                app:backgroundTint="#BACEF4"
+                app:cornerRadius="16dp"
+                app:icon="@android:drawable/ic_menu_gallery"
+                app:iconPadding="8dp"/>
 
         </LinearLayout>
         <!-- BUTTON PHÂN TÍCH -->
@@ -154,6 +154,8 @@
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
+            app:cornerRadius="20dp"
+            app:backgroundTint="@color/md_theme_primary"
             android:background="@drawable/bg_btn_phantich"
             android:text="Phân tích"
             android:textColor="#FFFFFF"
@@ -197,6 +199,7 @@
             android:text="Kết quả AI"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:textColor="@color/text_primary"
             android:padding="16dp"
             android:layout_marginTop="10dp"/>
         <TextView
@@ -207,7 +210,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:paddingLeft="20dp"
-            android:textColor="#2E7D32"
+            android:textColor="@color/success"
             android:layout_marginTop="12dp"/>
 
         <TextView
@@ -219,7 +222,7 @@
             android:paddingLeft="20dp"
             android:paddingBottom="30dp"
             android:textStyle="bold"
-            android:textColor="#C62828"
+            android:textColor="@color/error"
             android:layout_marginTop="6dp"/>
     </LinearLayout>
 

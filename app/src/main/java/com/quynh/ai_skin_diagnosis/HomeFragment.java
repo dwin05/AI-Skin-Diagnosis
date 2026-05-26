@@ -167,8 +167,8 @@ public class HomeFragment extends Fragment {
     private void predictImage(Bitmap bitmap) {
         PredictionResult result = classifier.predict(bitmap);
         txtResult.setText("Kết quả: " + result.getLabel());
-        txtBenign.setText("Lành tính: " + (int) result.getBenignPercent() + "%");
-        txtMalignant.setText("Ác tính: " + (int) result.getMalignantPercent() + "%");
+        txtBenign.setText(String.format("Lành tính: %.1f%%", result.getBenignPercent()));
+        txtMalignant.setText(String.format("Ác tính: %.1f%%", result.getMalignantPercent()));
         // Tải lịch sử cũ
         ArrayList<HistoryItem> historyList = HistoryManager.loadHistory(requireContext());
         // Lưu ảnh tạm thời
