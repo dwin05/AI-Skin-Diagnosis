@@ -21,8 +21,7 @@
 
 ### Khi người dùng click vào từng item. Hệ thống sử dụng Webview để chuyển sang trang web đã được tích hợp vào trong item đó để hiển thị thông tin chính thống cho người dùng đọc.
 ### Màn hình chuyển sang nội dung trang web bệnh viêm da cơ địa.
-<img width="313" height="592" alt="image" src="https://github.com/user-attachments/assets/9f18b1c8-d0fc-40df-9121-ea2b04703c7f" />
-
+<img width="341" height="610" alt="image" src="https://github.com/user-attachments/assets/92f90db4-a5c0-44a8-9ef1-81b62fc36c1b" />
 
 ## 4. Màn hình tips
 ### Màn hình Tips sử dụng recycler view để hiển thị các cách giúp cải thiện các bệnh da ác tính, cách bảo vệ và chăm sóc da trước những nguy cơ tiềm tàng.
