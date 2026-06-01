@@ -6,18 +6,21 @@
 ## 1. Màn hình chính 
 ### Là nơi để người dùng chụp ảnh hoặc sử dụng ảnh từ thư viện để tiến hành kiểm tra phân tích. 
 *Lưu ý: Ảnh khi chụp phải rõ nét, sát vào phần da cần kiểm tra, không bị lẫn phông nền dẫn đến kết quả thiếu tính chính xác.*
-<img width="1280" height="800" alt="image" src="https://github.com/user-attachments/assets/16b62692-4909-4be1-8713-0cf51c9efb3e" />
+<img width="261" height="575" alt="image" src="https://github.com/user-attachments/assets/6e1887e8-13d0-4fbb-a16e-592397dac662" />
 
 ### Kết quả sau khi người dùng nhấn vào nút phân tích sẽ trả về chỉ số mà AI phân tích được.
-<img width="320" height="604" alt="image" src="https://github.com/user-attachments/assets/15d8a1ac-b6c2-4ff3-91c5-46d2d581cf5c" />
+<img width="262" height="578" alt="image" src="https://github.com/user-attachments/assets/f188d169-c22e-4eae-bf4e-dd26b42da97b" />
+
 
 ## 2. Màn hình lịch sử
 ### Hình ảnh sau khi được người dùng nhấn nút phân tích sẽ được lưu vào trong màn hình lịch sử của ứng dụng bằng SharedPreferences để lưu dữ liệu dưới dạng key-value và RecyclerView được sử dụng để hiển thị lịch sử các kết quả kèm kết quả và thời gian thực.
-<img width="1280" height="800" alt="image" src="https://github.com/user-attachments/assets/fb07cc9a-45fd-4a29-9d23-3fb640dcaeb4" />
+<img width="262" height="578" alt="image" src="https://github.com/user-attachments/assets/43bd0bc1-e2ab-44db-a450-d5c3bfa8373c" />
+
 
 ## 3. Màn hình thông tin về bệnh 
 ### Màn hình này hiển thị các bệnh lành tính - ác tính để người dùng có thể đọc và tìm hiểu về các bệnh. Sử dụng RecyclerView và hiện thị ra nhiều section theo chủ đề khác nhau.
-<img width="1280" height="800" alt="image" src="https://github.com/user-attachments/assets/dff1a349-02ed-4cd8-a050-8bcebf70b61f" />
+<img width="262" height="578" alt="image" src="https://github.com/user-attachments/assets/49bf334b-ca75-4c32-9f7b-c534d7f16569" />
+
 
 ### Khi người dùng click vào từng item. Hệ thống sử dụng WebView để chuyển sang trang Web đã được tích hợp vào trong item đó để hiển thị thông tin chính thống cho người dùng đọc.
 ### Màn hình chuyển sang nội dung trang Web bệnh viêm da cơ địa.
@@ -25,7 +28,7 @@
 
 ## 4. Màn hình Tips
 ### Màn hình Tips sử dụng recycler view để hiển thị các cách giúp cải thiện các bệnh da ác tính, cách bảo vệ và chăm sóc da trước những nguy cơ tiềm tàng.
-<img width="1280" height="800" alt="image" src="https://github.com/user-attachments/assets/47329c24-51d0-41e9-8fb0-8c308e971e78" />
+<img width="259" height="582" alt="image" src="https://github.com/user-attachments/assets/ed9756f6-1f2b-429c-ba75-4735ff3c1461" />
 
 
 ### Màn hình chi tiết khi click vào từng item, khác với màn hình thông tin về các bệnh thì ở fragment này tích hợp thêm empty view actitvity - TipDetail mới để hiển thị thông tin.
