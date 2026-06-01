@@ -51,7 +51,6 @@ public class Classifier {
         // 2. Chạy mô hình để lấy kết quả xác suất trực tiếp từ lớp Sigmoid của TFLite
         float[][] output = new float[1][1];
         interpreter.run(byteBuffer, output);
-        // Giá trị output[0][0] này đã chạy qua Sigmoid từ file .tflite nên mặc định nằm trong khoảng [0.0, 1.0]
         float malignant = output[0][0];
         float benign = 1f - malignant;
         String label;

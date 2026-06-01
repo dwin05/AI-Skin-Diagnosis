@@ -3,8 +3,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_theme_background"
-    android:fitsSystemWindows="true"
+    android:background="@drawable/bg_galaxy"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -15,17 +14,17 @@
         <!-- HEADER -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:background="@color/md_theme_primaryContainer"
+            android:layout_height="140dp"
             android:gravity="center"
             android:padding="16dp"
+            android:paddingTop="40dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="AI Chẩn Đoán Da"
-                android:textColor="@color/md_theme_primary"
+                android:textColor="#0B223E"
                 android:textSize="28sp"
                 android:textStyle="bold"/>
 
@@ -33,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Phân tích mức độ bệnh da bằng AI"
-                android:textColor="@color/text_secondary"
+                android:textColor="#2E3F59"
                 android:textSize="16sp"/>
         </LinearLayout>
 
@@ -54,7 +53,7 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="Hãy để hệ thống AI hỗ trợ phân tích và kiểm tra tình trạng làn da của bạn ngay hôm nay."
-            android:textColor="#9E9E9E"
+            android:textColor="#1C5066"
             android:textSize="16dp"/>
 
         <androidx.cardview.widget.CardView

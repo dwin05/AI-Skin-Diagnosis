@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +19,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.fragment.app.Fragment;
 
 import java.io.IOException;
@@ -60,10 +64,8 @@ public class HomeFragment extends Fragment {
         btnCamera.setOnClickListener(v -> {
             if (androidx.core.content.ContextCompat.checkSelfPermission(
                     requireContext(), android.Manifest.permission.CAMERA) == android.content.pm.PackageManager.PERMISSION_GRANTED) {
-                // Nếu đã được cấp quyền từ trước -> Mở luôn camera
                 mobaCamera();
             } else {
-                // Nếu chưa được cấp quyền -> Phóng bảng xin quyền hệ điều hành lên
                 requestPermissionLauncher.launch(android.Manifest.permission.CAMERA);
             }
         });
@@ -149,15 +151,12 @@ public class HomeFragment extends Fragment {
     private Bitmap cropToSquare(Bitmap bitmap) {
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
-
         // Tìm kích thước của cạnh ngắn hơn
         int newWidth = Math.min(width, height);
         int newHeight = newWidth;
-
         // Tính toán tọa độ điểm bắt đầu để cắt từ chính giữa bức ảnh
         int cropX = (width - newWidth) / 2;
         int cropY = (height - newHeight) / 2;
-
         // Cắt ảnh theo tỉ lệ vuông 1:1 chuẩn
         Bitmap squareBitmap = Bitmap.createBitmap(bitmap, cropX, cropY, newWidth, newHeight);
         return squareBitmap;
@@ -175,7 +174,6 @@ public class HomeFragment extends Fragment {
         String imagePath = saveImage(bitmap);
         // Lấy thời gian hiện tại
         String currentDate = java.text.DateFormat.getDateTimeInstance().format(new java.util.Date());
-
         // Tính toán phần trăm lưu theo nhãn phù hợp
         float percent;
         if (result.getLabel().equals("Lành tính")) {
@@ -185,7 +183,8 @@ public class HomeFragment extends Fragment {
         }
 
         // Đẩy bản ghi mới lên đầu danh sách và lưu lại
-        historyList.add(0, new HistoryItem(imagePath, result.getLabel(), percent, currentDate));
+        historyList.add(0, new HistoryItem(imagePath, result.getLabel(),
+                percent, currentDate));
         HistoryManager.saveHistory(requireContext(), historyList);
     }
 

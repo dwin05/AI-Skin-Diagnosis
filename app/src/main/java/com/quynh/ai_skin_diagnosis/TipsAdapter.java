@@ -63,7 +63,6 @@ public class TipsAdapter extends RecyclerView.Adapter<TipsAdapter.ViewHolder> {
 
         public ViewHolder(View itemView) {
             super(itemView);
-
             imgTip = itemView.findViewById(R.id.imgTip);
             txtTitle = itemView.findViewById(R.id.txtTitle);
         }

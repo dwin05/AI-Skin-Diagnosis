@@ -29,7 +29,6 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_article, parent, false);
-
         return new ViewHolder(view);
     }
 
@@ -43,12 +42,9 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
 
         // CLICK ITEM -> OPEN WEBVIEW
         holder.itemView.setOnClickListener(v -> {
-
             Intent intent = new Intent(context,
                     WebViewActivity.class);
-
             intent.putExtra("url", item.getUrl());
-
             context.startActivity(intent);
         });
     }
