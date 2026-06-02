@@ -16,14 +16,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Window window = getWindow();
         WindowCompat.setDecorFitsSystemWindows(window, false);
-        // 2. Làm trong suốt thanh Status Bar và Navigation Bar
         window.setStatusBarColor(Color.TRANSPARENT);
         window.setNavigationBarColor(Color.TRANSPARENT);
-
-        // 3. các biểu tượng (Giờ, Wifi, Pin) hiển thị rõ
-        WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(window, window.getDecorView());
+        WindowInsetsControllerCompat controller = WindowCompat.getInsetsController
+                (window, window.getDecorView());
         controller.setAppearanceLightStatusBars(true);
 
         setContentView(R.layout.activity_main);

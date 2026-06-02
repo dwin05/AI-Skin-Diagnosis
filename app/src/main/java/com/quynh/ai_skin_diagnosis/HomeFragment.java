@@ -111,16 +111,16 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    // XỬ LÝ KẾT QUẢ KHI CHỤP ẢNH TỪ CAMERA XONG
+    //KHAI BÁO ACTIVITY MỞ CAMERA VÀ ĐĂNG KÝ SỰ KIỆN XỬ LÝ ẢNH SAU KHI CHỤP XONG
     private final ActivityResultLauncher<Intent> cameraLauncher =
             registerForActivityResult(
                     new ActivityResultContracts.StartActivityForResult(),
+                    // đăng kí sự kiện  - lambda
                     result -> {
                         if (result.getResultCode() == android.app.Activity.RESULT_OK && result.getData() != null) {
                             Bundle extras = result.getData().getExtras();
                             if (extras != null) {
                                 bitmap = (Bitmap) extras.get("data");
-                                //bitmap = cropToSquare(rawBitmap);
                                 imgView.setImageBitmap(bitmap);
                                 tvAnh.setVisibility(View.GONE);
                                 imgCameraIcon.setVisibility(View.GONE);
@@ -128,7 +128,7 @@ public class HomeFragment extends Fragment {
                         }
                     });
 
-    // XỬ LÝ KẾT QUẢ KHI CHỌN ẢNH TỪ THƯ VIỆN (GALLERY) XONG
+    // KHAI BÁO ACTIVITY MỞ GALLERY VÀ ĐĂNG KÍ SỰ KIỆN ĐỂ XỬ LÝ KẾT QUẢ KHI CHỌN ẢNH TỪ THƯ VIỆN XONG
     private final ActivityResultLauncher<Intent> galleryLauncher =
             registerForActivityResult(
                     new ActivityResultContracts.StartActivityForResult(),
@@ -151,14 +151,12 @@ public class HomeFragment extends Fragment {
     private Bitmap cropToSquare(Bitmap bitmap) {
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
-        // Tìm kích thước của cạnh ngắn hơn
-        int newWidth = Math.min(width, height);
+        int newWidth = Math.min(width, height); // Tìm kích thước của cạnh ngắn hơn
         int newHeight = newWidth;
-        // Tính toán tọa độ điểm bắt đầu để cắt từ chính giữa bức ảnh
-        int cropX = (width - newWidth) / 2;
+        int cropX = (width - newWidth) / 2; // Tính toán tọa độ điểm bắt đầu để cắt từ chính giữa bức ảnh
         int cropY = (height - newHeight) / 2;
-        // Cắt ảnh theo tỉ lệ vuông 1:1 chuẩn
-        Bitmap squareBitmap = Bitmap.createBitmap(bitmap, cropX, cropY, newWidth, newHeight);
+        Bitmap squareBitmap = Bitmap.createBitmap(bitmap, cropX, cropY,
+                newWidth, newHeight); // Cắt ảnh theo tỉ lệ vuông 1:1 chuẩn
         return squareBitmap;
     }
 
@@ -188,10 +186,10 @@ public class HomeFragment extends Fragment {
         HistoryManager.saveHistory(requireContext(), historyList);
     }
 
-    // Hàm mã hóa và nén lưu file ảnh tạm vào bộ nhớ Cache
+    // Hàm mã hóa và nén lưu file ảnh vào thư mục ứng dụng (getFileDir)
     private String saveImage(Bitmap bitmap) {
         try {
-            java.io.File file = new java.io.File(requireContext().getCacheDir(),
+            java.io.File file = new java.io.File(requireContext().getFilesDir(),
                     "img_" + System.currentTimeMillis() + ".jpg");
             java.io.FileOutputStream out = new java.io.FileOutputStream(file);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);

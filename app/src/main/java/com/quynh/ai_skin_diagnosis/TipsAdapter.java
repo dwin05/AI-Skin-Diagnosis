@@ -40,13 +40,10 @@ public class TipsAdapter extends RecyclerView.Adapter<TipsAdapter.ViewHolder> {
         holder.txtTitle.setText(item.getTitle());
 
         holder.itemView.setOnClickListener(v -> {
-
             Intent intent = new Intent(context, TipsDetailActivity.class);
-
             intent.putExtra("title", item.getTitle());
             intent.putExtra("content", item.getContent());
             intent.putExtra("image", item.getImageRes());
-
             context.startActivity(intent);
         });
     }

@@ -30,19 +30,22 @@ public class Classifier {
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
     }
     public PredictionResult predict(Bitmap bitmap) {
-        // resize anh 224x224 để ko bị crash
+        // resize anh 224x224 đúng với bên colab
         Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, IMAGE_SIZE, IMAGE_SIZE, true);
         ByteBuffer byteBuffer = ByteBuffer.allocateDirect(4 * IMAGE_SIZE * IMAGE_SIZE * 3);
         byteBuffer.order(ByteOrder.nativeOrder());
         int[] intValues = new int[IMAGE_SIZE * IMAGE_SIZE];
         resizedBitmap.getPixels(intValues, 0, IMAGE_SIZE, 0, 0, IMAGE_SIZE, IMAGE_SIZE);
+        //
         int pixel = 0;
         for (int i = 0; i < IMAGE_SIZE; i++) {
             for (int j = 0; j < IMAGE_SIZE; j++) {
+                // duyệt ảnh qua từng pixel
                 int val = intValues[pixel++];
                 float r = (float) ((val >> 16) & 0xFF);
                 float g = (float) ((val >> 8) & 0xFF);
                 float b = (float) (val & 0xFF);
+                // b g r
                 byteBuffer.putFloat(b);
                 byteBuffer.putFloat(g);
                 byteBuffer.putFloat(r);

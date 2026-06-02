@@ -21,10 +21,10 @@ public class WebViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_web_view);
 
         Window window = getWindow();
-        WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(window, window.getDecorView());
-        // Đặt thành true để ép chữ và icon hệ thống chuyển sang màu ĐEN
+        WindowInsetsControllerCompat controller = WindowCompat.getInsetsController
+                (window, window.getDecorView());
         controller.setAppearanceLightStatusBars(true);
-
+        //true để ép chữ và icon hệ thống chuyển sang màu ĐEN
         //thanh trạng thái có màu trắng hoàn toàn tiệp với nền web:
         window.setStatusBarColor(Color.WHITE);
 
