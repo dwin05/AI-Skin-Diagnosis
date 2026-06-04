@@ -3,7 +3,7 @@
 ## Trước khi vào link Colab, bạn hãy truy cập vào folder MachineLearning chứa dataset và Chọn Add shortcut to Drive (Thêm lối tắt vào Drive), đặt shortcut ở MyDrive để tranh bị lỗi khi vào file Colab. [MachineLearning](https://drive.google.com/drive/folders/1ziS9nsX8OTKJMO7qcI5ulrs1nE1bJ77H?usp=sharing)
 ## Mô hình dự đoán nhãn lớp (lành tính, ác tính) được huấn luyện trên Google Colab [chi tiết](https://colab.research.google.com/drive/122Pw-xLSXzvfOo-VOXQbkbG7ygtB5hcr?authuser=1#scrollTo=uiBC3TfpXGXd)
 ## Dựa vào hình ảnh mà người dùng cung cấp, ứng dụng sẽ cho bạn biết được bệnh da ấy có mức độ lành tính, ác tính bao nhiêu. Từ đó người dùng có thể chủ động thăm khám bác sĩ trước khi quá muộn đồng thời nâng cao ý thức bảo vệ làn da của bản thân.
-## Link video trình bày APP [Video]([https://drive.google.com/drive/u/1/recent](https://drive.google.com/file/d/1IsCRrE8eoOud-2f7_SwPjq6IDXtIrgf_/view?usp=sharing) 
+## Link video trình bày APP [Video]([https://drive.google.com/drive/u/1/recent](https://drive.google.com/file/d/1IsCRrE8eoOud-2f7_SwPjq6IDXtIrgf_/view?usp=sharing]) 
 ## 1. Màn hình chính 
 ### Là nơi để người dùng chụp ảnh hoặc sử dụng ảnh từ thư viện để tiến hành kiểm tra phân tích. 
 *Lưu ý: Ảnh khi chụp phải rõ nét, sát vào phần da cần kiểm tra, không bị lẫn phông nền dẫn đến kết quả thiếu tính chính xác.*
